@@ -10,24 +10,23 @@ describe('Planes' , function () {
 
     test('Has a destination', function () {
         const plane = new Planes({flight: "BA018"})
-        const destination = plane.destination = "Bali"
-        expect(plane.destination).toEqual("Bali")
+        plane.setDestination("LAX")
+        expect(plane.destination).toEqual("LAX")
     })
 
     test('Has passengers', function () {
-        const flight = new Planes({flight: "BA018"})
-        const destination = flight.destination = "Bali"
+        const plane = new Planes({flight: "BA018"})
+        plane.setDestination("LAX")
         const passengerOne = new Passenger({name: "Yuki"})
         const passengerTwo = new Passenger({name: "Poppy"})
-        flight.boardPassengers(passengerOne)
-        flight.boardPassengers(passengerTwo)
-        expect(flight.passengers.length).toBe(2)
-        console.log(flight)
+        plane.boardPassengers(passengerOne)
+        plane.boardPassengers(passengerTwo)
+        expect(plane.passengers.length).toBe(2)
     })
 
     test('Has passengers and their bags', function () {
-        const flight = new Planes({flight: "BA018"})
-        const destination = flight.destination = "Bali"
+        const plane = new Planes({flight: "BA018"})
+        plane.setDestination("LAX")
         const passengerOne = new Passenger({name: "Yuki"})
         const bag1PassOne = new Bag(13)
         const bag2PassOne = new Bag (8)
@@ -36,9 +35,8 @@ describe('Planes' , function () {
         const passengerTwo = new Passenger({name: "Poppy"})
         const bagPassTwo = new Bag(10)
         passengerTwo.addBag(bagPassTwo)
-        flight.boardPassengers(passengerOne)
-        flight.boardPassengers(passengerTwo)
-        expect(flight.passengers.length).toBe(2)
-        console.log(flight)
+        plane.boardPassengers(passengerOne)
+        plane.boardPassengers(passengerTwo)
+        expect(plane.passengers.length).toBe(2)
     })
 })
