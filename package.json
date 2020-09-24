@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "jest": "^26.4.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "jest --watchAll"
   },
