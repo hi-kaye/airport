@@ -11,14 +11,12 @@ describe('Airport', function () {
         expect(Airport.airports.length).toBe(1)
         const DPS = new Airport({name: "DPS"})
         expect(Airport.airports.length).toBe(2)
-        console.log(Airport.airports)
     })
 
     test('Take off and landing at destination airport', function () {
         const plane3 = new Planes({flight: "BA017"})
         const [LHR, DPS] = Airport.airports
         LHR.addPlane(plane3)
-        console.log(Airport.airports)
         expect(plane3.location).toBe("LHR")
         plane3.setDestination("DPS")
         LHR.takeOff(plane3)
@@ -35,4 +33,30 @@ describe('Airport', function () {
         airport.addPlane(plane2)
         expect(airport.apron.length).toBe(2)
     })
+
+    test("Airports have a city", (done) => {
+        const HKG = new Airport({name: "HKG"})
+        const onInfo = function(err, info){
+            expect(info.city).toEqual("Hong Kong")
+            done()
+        }
+        HKG.getInfo(onInfo)
+        
+        })
+    test("Promise: Airports have a city", () => {
+        const HKG = new Airport({name: "HKG"})
+        return HKG.getInfoPromise()
+            .then(info => {
+                expect(info.city).toBe("Hong Kong")     
+        }).catch(err => {
+            expect(err).toBeFalsey()
+        })
+    })
+    test("Async Await: Airports have a city", async () => {
+        const HKG = new Airport({name: "HKG"})
+        const info = await HKG.getInfoPromise()
+        expect(info.city).toBe("Hong Kong")
+
+    })
 })
+
